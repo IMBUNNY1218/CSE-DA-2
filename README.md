@@ -1,62 +1,26 @@
 # CSE-DA-2
 
 #include <stdio.h>
-int sumOfDigits(int n) {
- int sum = 0;
- while (n > 0) {
- sum += n % 10;
- n /= 10;
- }
- return sum;
-}
+int power(int x, int n);
 int main() {
- int sum = 0;
- for (int i = 1000; i <= 9998; i += 2) {
- sum += i;
- }
- while (sum > 9) {
- sum = sumOfDigits(sum);
- }
- if (sum % 2 == 0) {
- printf("Even found\n");
- } else {
- printf("Odd found\n");
- }
+ int x, n, result;
+
+ printf("Enter a number x: ");
+ scanf("%d", &x);
+
+ printf("Enter a number n (less than or equal to 5): ");
+ scanf("%d", &n);
+
+ result = power(x, n);
+
+ printf("%d to the power of %d is %d\n", x, n, result);
+
  return 0;
 }
->>>>> G3
-#include <stdio.h>
-#include <string.h>
-int main()
-{
- char password[] = "aeiceg";
- char input[3][3];
- char diagonal[5];
- int i, j, k = 0;
-
- printf("Enter the input characters:\n");
- for(i=0; i<3; i++)
- {
- for(j=0; j<3; j++)
- {
- scanf(" %c", &input[i][j]);
+int power(int x, int n) {
+ if (n == 0) {
+ return 1;
+ } else {
+ return x * power(x, n-1);
  }
- }
-
- diagonal[k++] = input[0][0];
- diagonal[k++] = input[1][1];
- diagonal[k++] = input[2][2];
- diagonal[k++] = input[0][2];
- diagonal[k] = input[2][0];
-
- if(strcmp(diagonal, password) == 0)
- {
- printf("Password matched. The locker is opened successfully.\n");
- }
- else
- {
- printf("Password not matched. The locker cannot be opened.\n");
- }
-
- return 0;
 } 
